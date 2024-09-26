@@ -1,0 +1,23 @@
+in_dirname: /root/benchmark_results/@COMMIT_HASH@/
+out_dirname: /root/benchmark_results/
+num_threads: [4]
+cvmfs_build_name_labels:
+  "@VERSION@-@COMMIT_HASH@": "@COMMIT_HASH@"
+client_config_labels:
+  "default": "default"
+  "symlink": "symlink"
+  "nocache": "nocache"
+  "statfs": "statfs"
+  "kernel": "kernel"
+  "debuglog": "debuglog"
+  "trace": "trace"
+
+append_to_csv:
+  full_out_name: "/root/benchmark_results/results.csv"
+  cvmfs_build_names: ["@VERSION@-@COMMIT_HASH@"]
+  client_configs: @CLIENT_CONFIGS@
+  time_metrics: @METRICS@
+  internal_affairs_metrics: @IA_METRICS@
+  internal_affairs_repos: ["sft.cern.ch", "cms-ib.cern.ch"]
+  tag: "@COMMIT_DATETIME@"
+  write: True

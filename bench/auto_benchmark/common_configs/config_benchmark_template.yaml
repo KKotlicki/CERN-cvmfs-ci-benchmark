@@ -1,0 +1,47 @@
+avail_client_configs:
+  default:
+    - 'CVMFS_HTTP_PROXY="http://ca-proxy.cern.ch:3128"'
+    - 'CVMFS_AUTO_UPDATE=NO'
+    - 'CVMFS_QUOTA_LIMIT=10000'
+  symlink:
+    - 'CVMFS_CACHE_SYMLINKS=1'
+    - 'CVMFS_HTTP_PROXY="http://ca-proxy.cern.ch:3128"'
+  nocache:
+    - 'CVMFS_KCACHE_TIMEOUT=0'
+    - 'CVMFS_HTTP_PROXY="http://ca-proxy.cern.ch:3128"'
+  statfs:
+    - 'CVMFS_STATFS_CACHE_TIMEOUT=600'
+    - 'CVMFS_HTTP_PROXY="http://ca-proxy.cern.ch:3128"'
+  kernel:
+    - 'CVMFS_KCACHE_TIMEOUT=600'
+    - 'CVMFS_HTTP_PROXY="http://ca-proxy.cern.ch:3128"'
+  debuglog:
+    - 'CVMFS_DEBUGLOG=/tmp/cvmfs-benchmark_cvmfs-debuglog-@fqrn@.log'
+    - 'CVMFS_HTTP_PROXY="http://ca-proxy.cern.ch:3128"'
+  trace:
+    - 'CVMFS_TRACEFILE=/tmp/cvmfs-benchmark_cvmfs-trace-@fqrn@.log'
+    - 'CVMFS_HTTP_PROXY="http://ca-proxy.cern.ch:3128"'
+
+avail_cmds:
+  tensorflow:
+    command: "./scripts/50-tensorflow.sh"
+    repos: ["sft.cern.ch"]
+  root:
+    command: "./scripts/51-root.sh"
+    repos: ["sft.cern.ch"]
+  dd4hep:
+    command: "./scripts/60-dd4hep.sh"
+    repos: [ "sft.cern.ch" ]
+
+run-@COMMIT_HASH@:
+  use_cvmfs: true
+  cvmfs_save_raw_results: false
+  commands: @COMMANDS@
+  cvmfs_build_dirs: ["/root/auto_benchmark/cvmfs-devel-current/build"]
+  client_configs: @CLIENT_CONFIGS@
+  num_threads: [4]
+  repetitions: 1
+  use_autofs: true
+  out_dirname: "@RESULT_DIR@"
+  out_name_replacement_of_version:
+     "cvmfs-devel-current/": "@COMMIT_HASH@"

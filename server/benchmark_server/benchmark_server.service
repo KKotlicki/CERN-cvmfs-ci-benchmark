@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve benchmark_server
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/root/benchmark_server
+EnvironmentFile=/root/benchmark_server/.env
+ExecStart=/root/benchmark_server/benchmark_venv/bin/gunicorn --workers 4 --bind 0.0.0.0:5000 app:app
+
+[Install]
+WantedBy=multi-user.target

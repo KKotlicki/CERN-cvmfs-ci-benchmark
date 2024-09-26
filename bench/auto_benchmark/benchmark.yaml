@@ -1,0 +1,18 @@
+# Currently does not support multi client_config runs
+client_configs:
+  - default
+  # - nocache
+
+commands:
+  - tensorflow
+  - root
+
+metrics:
+  - user
+  - system
+  - real
+
+internal_affairs_metrics:
+  - catalog_mgr.n_lookup_path
+
+server_url: http://192.168.1.1:5000
